@@ -20,7 +20,7 @@ class TestEntry(Entry):
     y: float
     RSSI_A: int
     RSSI_B: int
-    RSS_C: int
+    RSSI_C: int
 
 
 @dataclass
@@ -29,7 +29,7 @@ class DatabaseEntry(Entry):
     y: float
     RSSI_A: int
     RSSI_B: int
-    RSS_C: int
+    RSSI_C: int
 
 
 @dataclass

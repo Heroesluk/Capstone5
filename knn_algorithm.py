@@ -24,7 +24,15 @@ def knn(input:(int,int,int), database:List[DatabaseEntry], k:int = 4) -> (float,
         avarage_position_x += i[0]
         avarage_position_y += i[1]
     avarage_position = (avarage_position_x/k, avarage_position_y/k)
-
+ 
     return avarage_position
 
 
+# can work poorly if error is big or path is close to another
+def distance_from_path(position:(float,float), path_points:List[(float,float)]) -> float:
+    distance:float = 0.0
+    for point in path_points:
+        distance = max((point[0] - position[0])**2 (point[1] - position[1])**2, distance)
+    return sqrt(distance)
+    
+    

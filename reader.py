@@ -4,6 +4,8 @@ from dataclasses import dataclass
 from typing import List
 
 
+# TODO: WILL BE REMOVED JANEK TAKE CARE
+
 @dataclass
 class Entry:
     def __post_init__(self):
@@ -69,5 +71,3 @@ def loadData(db_filename: str, path_filename: str, tests_filename: str) -> Scena
             tests.append(TestEntry(*row))
 
     return ScenarioData(pathloss, tests, database)
-
-

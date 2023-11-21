@@ -47,8 +47,6 @@ def run_data():
         return [RunData(row) for row in reader]
 
 
-
-
 class Runs():
     def __init__(self):
         self.coords = [(2, 0), (3, 0), (3.707, 0.292), (4, 1), (4, 2), (4.292, 2.707), (5, 3), (6, 3), (6, 4), (5, 4),
@@ -71,7 +69,7 @@ class Runs():
 
     # returns value based on specified device (1-3), lap(1-4) and point (x,y) list
     # ie getRSSI((2,0),1,1) should yield -45
-    def getRSSI(self, xy: tuple, device: int, lap: int):
+    def get_rssi(self, xy: tuple, device: int, lap: int):
         if xy not in self.coords or device > 3 or device < 1 or lap > 4 or lap < 1:
             raise Exception("Incorrect Input")
 

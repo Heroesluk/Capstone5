@@ -34,11 +34,11 @@ class RunData:
         self.metrics_latency = row[28]
         self.metrics_rates_update = row[29]
         self.metrics_rates_success = row[30]
-        self.reference_x = row[31]
-        self.bran = row[32]
+        self.reference_x: float = abs(float(row[31]))
+        self.reference_y: float = abs(float(row[32]))
 
 
-def run_data():
+def run_data() -> list[RunData]:
     file_path = 'przejazd_01 - Sheet1.csv'
 
     with open(file_path, 'r') as file:
@@ -52,6 +52,10 @@ class Runs():
         self.coords = [(2, 0), (3, 0), (3.707, 0.292), (4, 1), (4, 2), (4.292, 2.707), (5, 3), (6, 3), (6, 4), (5, 4),
                        (4, 4),
                        (3, 4), (2, 4), (1, 3.866), (0.134, 3), (0, 2), (0.134, 1), (1, 0.134)]
+        #? optional
+        for i, (x, y) in enumerate(self.coords):
+            self.coords[i] = ((6 - x) * 1000, 1000 * (4 - y))
+
         self.rssi = [[[-45, -47, -48, -56, -58, -58, -57, -64, -55, -61, -57, -63, -50, -52, -51, -44, -54, -36],
                       [-39, -48, -51, -55, -54, -45, -53, -63, -58, -61, -56, -62, -47, -48, -52, -41, -50, -36],
                       [-48, -45, -52, -54, -58, -56, -57, -64, -50, -53, -59, -55, -54, -51, -39, -44, -44, -41],

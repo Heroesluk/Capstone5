@@ -1,5 +1,5 @@
 from math import *
-from typing import Dict
+from typing import *
 from reader import *
 
 # input is 3 RSSI readings; output is position
@@ -28,11 +28,31 @@ def knn(input:(int,int,int), database:List[DatabaseEntry], k:int = 4) -> (float,
     return avarage_position
 
 
-# can work poorly if error is big or path is close to another
-def distance_from_path(position:(float,float), path_points:List[(float,float)]) -> float:
-    distance:float = 0.0
-    for point in path_points:
-        distance = max((point[0] - position[0])**2 (point[1] - position[1])**2, distance)
-    return sqrt(distance)
-    
-    
+# # can work poorly if error is big or path is close to another
+# def distance_from_path_basic(position:(float,float), path_points:List[(float,float)]) -> float:
+#     distance:float = 0.0
+#     for point in path_points:
+#         distance = max((point[0] - position[0])**2 (point[1] - position[1])**2, distance)
+#     return sqrt(distance)
+
+def distance_from_path_segment(x, y, x1, y1, x2, y2):
+    dx, dy = x2 - x1, y2 - y1
+    dot_product = (x - x1) * dx + (y - y1) * dy
+    if dot_product < 0:
+        return sqrt((x - x1) ** 2 + (y - y1) ** 2)
+    if dot_product > dx ** 2 + dy ** 2:
+        return sqrt((x - x2) ** 2 + (y - y2) ** 2)
+    perp_distance = abs((x - x1) * dy - (y - y1) * dx) / sqrt(dx ** 2 + dy ** 2)
+    return perp_distance
+
+def distance_from_path(x, y, polygonal_chain):
+    min_distance = float('inf')
+
+    for i in range(len(polygonal_chain) - 1):
+        x1, y1 = polygonal_chain[i]
+        x2, y2 = polygonal_chain[i + 1]
+        distance = distance_from_path_segment(x, y, x1, y1, x2, y2)
+        min_distance = min(min_distance, distance)
+
+    return min_distance
+

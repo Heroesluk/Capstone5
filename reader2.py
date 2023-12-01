@@ -71,6 +71,19 @@ class Runs():
                       [-54, -56, -56, -49, -52, -56, -50, -55, -52, -56, -54, -51, -47, -40, -50, -46, -45, -46],
                       [-58, -56, -50, -50, -52, -58, -61, -60, -58, -50, -56, -42, -49, -40, -42, -48, -50, -46]]]
 
+        self.acceleration_x = [0.0] * len(self.coords)
+        self.acceleration_y = [0.0] * len(self.coords)
+
+        run_data_list = run_data()
+
+        for i, (ref_x, ref_y) in enumerate(self.coords):
+            closest_data = min(run_data_list, key=lambda data: (((6000 - data.reference_x) - ref_x) ** 2 + (
+                        (4000 - data.reference_y) - ref_y) ** 2) ** 0.5)
+            self.acceleration_x[i] = closest_data.linearAcceleration_x
+            self.acceleration_y[i] = closest_data.linearAcceleration_y
+            print(self.acceleration_x)
+            print(self.acceleration_y)
+
     # returns value based on specified device (1-3), lap(1-4) and point (x,y) list
     # ie getRSSI((2,0),1,1) should yield -45
     def get_rssi(self, xy: tuple, device: int, lap: int):

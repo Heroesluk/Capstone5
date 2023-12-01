@@ -1,6 +1,8 @@
 import matplotlib.pyplot as plt
 import numpy as np
-from reader2 import Runs, run_data
+from reader2 import Runs, run_data, RunData
+from typing import List  # Add this line to import List
+
 
 def visualize_rssi_2d_matplotlib_all_runs(device: int):
     runs = Runs()
@@ -38,5 +40,5 @@ def visualize_rssi_2d_matplotlib_all_runs(device: int):
 
 if __name__ == "__main__":
     visualize_rssi_2d_matplotlib_all_runs(device=1)
-    visualize_rssi_2d_matplotlib_all_runs(device=2)
-    visualize_rssi_2d_matplotlib_all_runs(device=3)
+    # visualize_rssi_2d_matplotlib_all_runs(device=2)
+    # visualize_rssi_2d_matplotlib_all_runs(device=3)

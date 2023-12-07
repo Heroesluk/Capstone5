@@ -1,4 +1,5 @@
 import csv
+from typing import List
 
 
 class RunData:
@@ -38,7 +39,7 @@ class RunData:
         self.reference_y: float = abs(float(row[32]))
 
 
-def run_data() -> list[RunData]:
+def run_data() -> List[RunData]:
     file_path = 'przejazd_01 - Sheet1.csv'
 
     with open(file_path, 'r') as file:

@@ -45,5 +45,5 @@ def visualize_rssi_2d_matplotlib_all_runs(device: int):
 
 if __name__ == "__main__":
     visualize_rssi_2d_matplotlib_all_runs(device=1)
-    # visualize_rssi_2d_matplotlib_all_runs(device=2)
-    # visualize_rssi_2d_matplotlib_all_runs(device=3)
+    visualize_rssi_2d_matplotlib_all_runs(device=2)
+    visualize_rssi_2d_matplotlib_all_runs(device=3)

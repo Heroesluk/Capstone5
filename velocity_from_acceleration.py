@@ -37,11 +37,14 @@ velocity_x = cumtrapz(rotated_acceleration_x, timestamps_seconds, initial=0)
 velocity_y = cumtrapz(rotated_acceleration_y, timestamps_seconds, initial=0)
 
 # Calculate the magnitude of velocity
-velocity_magnitude = np.sqrt(velocity_x**2 + velocity_y**2)
+velocity_magnitude = np.sqrt(velocity_x**2 + velocity_y**2) / 1000
+
+# Print average velocity in cm/s
+print('Average velocity: {:.2f} cm/s'.format(np.mean(velocity_magnitude)))
 
 # Plot velocity over time
 plt.figure(figsize=(10, 6))
-plt.plot(timestamps_seconds, velocity_magnitude/1000, label='Velocity Magnitude')
+plt.plot(timestamps_seconds, velocity_magnitude, label='Velocity Magnitude')
 plt.xlabel('Timestamp (s)')
 plt.ylabel('Velocity (cm/s)')
 plt.title('Device Velocity Over Time After Yaw Rotation')
